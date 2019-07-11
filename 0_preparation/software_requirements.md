@@ -30,7 +30,6 @@ A basic understanding of R will be very helpful and we recommend the following r
 * https://cran.r-project.org/doc/contrib/Torfs+Brauer-Short-R-Intro.pdf
 * https://cran.r-project.org/doc/manuals/r-release/R-intro.html
 
-Documentation for running RStudio on Comet during the workshop can be found [here](RStudio_on_Comet_07-18-2018.pdf)
 
 ### Parallel session: Scientific visualization with Visit (scheduled opposite Machine Learning Overview)
 
