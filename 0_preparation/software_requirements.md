@@ -2,7 +2,7 @@
 
 While many of the hands-on activities will be run on Comet, some sessions require that customized software be installed on your laptop. Please perform the following software installations and file downloads before you arrive. Note: several of the preparation activities will provide information and guidance on how to install the required software components.
 
-### Parallel session: Using Virtualization on Comet - Singularity Containers or Comet Virtual Cluster
+### Plenary session: An Introduction to Singularity: Containers for Scientific and High-Performance Computing
 
 Participants who will be attending the Using Virtualization on Comet - Singularity Containers or Comet Virtual Cluster session on Monday afternoon and wish to build their own sample Singularity Containers should make the following preparations.
 
@@ -21,7 +21,7 @@ All participants should take the following steps.
 + [Download](https://dibbs.seedme.org/sites/dibbs.seedme.org/files/docker-images/seedme-workshop-2018-begin.tar.gz) begin docker image, this will be used to get started with the tutorial
 + [Download](https://dibbs.seedme.org/sites/dibbs.seedme.org/files/docker-images/seedme-workshop-2018-final.tar.gz) final docker image, this is a fully configured sandbox website 
 
-### Parallel sessions: Machine Learning Overview (scheduled opposite Python for HPC) and Scalable Machine Learning (scheduled opposite Performance Tuning) UPDATE 8/3/18
+### Parallel sessions: Machine Learning Overview (scheduled opposite Scientific Visualization with Visit) and Scalable Machine Learning (scheduled opposite GPU Computing and Programming)
 
 Participants who will be attending the Machine Learning Overview parallel session on Tuesday morning will need to install R (https://www.r-project.org/) and RStudio Desktop open source edition (https://www.rstudio.com/) on their laptops.
 
@@ -34,7 +34,7 @@ A basic understanding of R will be very helpful and we recommend the following r
 
 Documentation for running RStudio on Comet during the workshop can be found [here](RStudio_on_Comet_07-18-2018.pdf)
 
-### Parallel session: Scientific visualization with Visit (scheduled opposite GPU programming)
+### Parallel session: Scientific visualization with Visit (scheduled opposite Machine Learning Overview)
 
 Participants who will be attending the Scientific visualization with Visit session on Thursday morning should make the following preparations.
 
