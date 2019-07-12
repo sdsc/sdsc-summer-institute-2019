@@ -37,14 +37,15 @@ Participants who will be attending the Scientific visualization with Visit sessi
 
 * Computer, mouse with scroll wheel are required (tablets are not sufficient for this tutorial).
 
-* [Download](https://wci.llnl.gov/simulation/computer-codes/visit/executables) and install VisIt version 2.12.3 (**not the latest version**). Please do not compile from source unless you are adventurous
+* [Download](https://wci.llnl.gov/simulation/computer-codes/visit/executables) and install VisIt version 3.0.1 (**the latest version**). Please do not compile from source unless you are adventurous
 
 * Test run VisIt application on your laptop to make sure it works
 
 * Download sample data: [visit_data_files.tar.gz](https://wci.llnl.gov/content/assets/docs/simulation/computer-codes/visit/visit_data_files.tar.gz). Unzip to your desktop
 
-* Download VisIt host profile for Comet: [host_comet_2_12_x.zip](http://users.sdsc.edu/~amit/temp/comet/host_comet_2_12_x.zip).  
-Unzip and copy this file as follows  
-Linux and Mac: ~/.visit/hosts/  
-Windows: C:/users/username/Documents/visit/hosts/ 
+* Download [Comet host profile for VisIt-3.0.x](http://users.sdsc.edu/~amit/comet/visit3.0.x-comet-host-profile.zip).  
+    Unzip and copy this file as follows  
+    Linux and Mac: ~/.visit/hosts/  
+    Windows: C:/users/username/Documents/visit/hosts/   
+    Restart VisIt
 
