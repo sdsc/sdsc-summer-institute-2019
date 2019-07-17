@@ -22,7 +22,5 @@ The document below contains a list of software being used at the institute and i
 
 The Summer Institute is a combination of in-depth lectures and hands-on learning. The following documents will guide you through the necessary steps needed to be prepared to get to work when you arrive at the Institute.
 
-* [0_getting_stared](https://github.com/sdsc/sdsc-summer-institute-2018/tree/master/0_preparation/0_getting_started)
-* [1_basic_linux_skills](https://github.com/sdsc/sdsc-summer-institute-2018/tree/master/0_preparation/1_basic_linux_skills)
-* [2_compiling_and_running_jobs](https://github.com/sdsc/sdsc-summer-institute-2018/tree/master/0_preparation/2_compiling_and_running_jobs)
-* [3_comet_filesystems](https://github.com/sdsc/sdsc-summer-institute-2018/tree/master/0_preparation/3_comet_filesystems)
+* [getting_stared](https://github.com/sdsc/sdsc-summer-institute-2019/tree/master/0_preparation/getting_started)
+* [basic_linux_skills](https://github.com/sdsc/sdsc-summer-institute-2019/tree/master/0_preparation/basic_linux_skills)
