@@ -26,4 +26,3 @@ The Summer Institute is a combination of in-depth lectures and hands-on learning
 * [1_basic_linux_skills](https://github.com/sdsc/sdsc-summer-institute-2018/tree/master/0_preparation/1_basic_linux_skills)
 * [2_compiling_and_running_jobs](https://github.com/sdsc/sdsc-summer-institute-2018/tree/master/0_preparation/2_compiling_and_running_jobs)
 * [3_comet_filesystems](https://github.com/sdsc/sdsc-summer-institute-2018/tree/master/0_preparation/3_comet_filesystems)
-

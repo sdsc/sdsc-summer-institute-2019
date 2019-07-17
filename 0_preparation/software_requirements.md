@@ -42,7 +42,8 @@ All participants should take the following steps.
 
 ### Parallel sessions: Machine Learning Overview (scheduled opposite Scientific Visualization with Visit) <a name="mach-learn"></a>
 
-Participants who will be attending the Machine Learning Overview parallel session on Tuesday morning will need to install R (https://www.r-project.org/) and RStudio Desktop open source edition (https://www.rstudio.com/) on their laptops.
+Participants who will be attending the Machine Learning Overview parallel session on Tuesday morning will need to install R (https://www.r-project.org/) and RStudio Desktop open source edition (https://www.rstudio.com/) on their laptops. Notes on using R on Comet can be found here:
+[https://github.com/sdsc/sdsc-summer-institute-2018/blob/master/0_preparation/RStudio on Comet_07-18-2018.pdf](https://github.com/sdsc/sdsc-summer-institute-2018/blob/master/0_preparation/RStudio on Comet_07-18-2018.pdf)
 
 A basic understanding of R will be very helpful and we recommend the following resources:
 
