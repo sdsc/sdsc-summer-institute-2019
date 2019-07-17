@@ -1,4 +1,4 @@
-# SDSC Summer Institute Topic: Launching Jobs on Comet
+# SDSC Summer Institute Topic: Compiling and Running Jobs on Comet
 Presented by Mary Thomas (SDSC,  <mthomas@sdsu.edu> )
 <hr>
 In this tutorial, you will learn how to compile and run jobs on Comet, where to run them, and how to run batch jobs.
