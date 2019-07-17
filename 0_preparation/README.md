@@ -16,7 +16,7 @@ To help you get the most out of your week, this section containes a set of detai
 
 ## Software Requirements:
 The document below contains a list of software being used at the institute and installation instructions:
-* [software_requirements.md](https://github.com/sdsc/sdsc-summer-institute-2018/blob/master/0_preparation/software_requirements.md)
+* [software_requirements.md](https://github.com/sdsc/sdsc-summer-institute-2019/blob/master/0_preparation/software_requirements.md#mach-learn)
 
 ## Preparation Activities:
 
