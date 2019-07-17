@@ -3,11 +3,23 @@
 While many of the hands-on activities will be run on Comet, some sessions require that customized software be installed on your laptop. Please perform the following software installations and file downloads before you arrive. Note: several of the preparation activities will provide information and guidance on how to install the required software components.
 
 ## Contents
+ * [Preparation: Anaconda for Jupyter Notebooks](#anaconda)
+ * [Preparation: Cloning Institute GitHub Account](#github)
  * [Plenary session: An Introduction to Singularity](#singularity)
  * [Plenary session: SeedMe2: Creating data centric websites for researchers and research projects](#seedme)
  * [Parallel sessions: Machine Learning Overview](#mach-learn)
  * [Parallel session: Scientific visualization with Visit ](#visit)
- * [Preparation: Anaconda for Jupyter Notebooks](#anaconda)
+
+### Preparation: Setting up GitHub Account  <a name="github"></a>
+Tutorial material and software will be available via a GitHub repository that anyone can clone (download). Make sure your laptop can run git. See the GitHub guide here:  [https://help.github.com/en/articles/set-up-git](https://help.github.com/en/articles/set-up-git). 
+
+### Preparation: Anaconda for Jupyter Notebooks <a name="anaconda"></a>
+Some sessions and tutorials will be using Jupyter Notebooks. To learn more, see Jupyter/IPython Notebook Quick Start Guide:
+[https://jupyter-notebook-beginner-guide.readthedocs.io/en/latest/index.html](https://jupyter-notebook-beginner-guide.readthedocs.io/en/latest/index.html)
+
+The Jupyter Notebook App can be installed using a scientific python distribution which also includes scientific python packages. The most common distribution is called Anaconda. To download:
+[https://www.anaconda.com/download/](https://www.anaconda.com/download/)
+
 
 ### Plenary session: An Introduction to Singularity: Containers for Scientific and High-Performance Computing <a name="singularity"></a>
 
@@ -56,9 +68,3 @@ Participants who will be attending the Scientific visualization with Visit sessi
     Windows: C:/users/username/Documents/visit/hosts/   
     Restart VisIt
 
-### Preparation: Anaconda for Jupyter Notebooks <a name="anaconda"></a>
-Some sessions and tutorials will be using Jupyter Notebooks. To learn more, see Jupyter/IPython Notebook Quick Start Guide:
-[https://jupyter-notebook-beginner-guide.readthedocs.io/en/latest/index.html](https://jupyter-notebook-beginner-guide.readthedocs.io/en/latest/index.html)
-
-The Jupyter Notebook App can be installed using a scientific python distribution which also includes scientific python packages. The most common distribution is called Anaconda. To download:
-[https://www.anaconda.com/download/](https://www.anaconda.com/download/)
