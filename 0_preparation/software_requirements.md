@@ -10,6 +10,7 @@ While many of the hands-on activities will be run on Comet, some sessions requir
  * [Parallel sessions: Machine Learning Overview](#mach-learn)
  * [Parallel session: Scientific visualization with Visit ](#visit)
 
+
 ### Preparation: Setting up GitHub Account  <a name="github"></a>
 Tutorial material and software will be available via a GitHub repository that anyone can clone (download). Make sure your laptop can run git. See the GitHub guide here:  [https://help.github.com/en/articles/set-up-git](https://help.github.com/en/articles/set-up-git). 
 
