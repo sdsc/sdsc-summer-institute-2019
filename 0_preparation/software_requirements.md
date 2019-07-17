@@ -3,8 +3,8 @@
 While many of the hands-on activities will be run on Comet, some sessions require that customized software be installed on your laptop. Please perform the following software installations and file downloads before you arrive. Note: several of the preparation activities will provide information and guidance on how to install the required software components.
 
 ## Contents
+ * [Preparation: Setting up GitHub Account](#github)
  * [Preparation: Anaconda for Jupyter Notebooks](#anaconda)
- * [Preparation: Cloning Institute GitHub Account](#github)
  * [Plenary session: An Introduction to Singularity](#singularity)
  * [Plenary session: SeedMe2: Creating data centric websites for researchers and research projects](#seedme)
  * [Parallel sessions: Machine Learning Overview](#mach-learn)
@@ -41,7 +41,7 @@ All participants should take the following steps.
 + [Download](https://dibbs.seedme.org/sites/dibbs.seedme.org/files/docker-images/seedme-workshop-2018-begin.tar.gz) begin docker image, this will be used to get started with the tutorial
 + [Download](https://dibbs.seedme.org/sites/dibbs.seedme.org/files/docker-images/seedme-workshop-2018-final.tar.gz) final docker image, this is a fully configured sandbox website 
 
-### Parallel sessions: Machine Learning Overview (scheduled opposite Scientific Visualization with Visit) <a name="mach-learn"></a>
+### Parallel session: Machine Learning Overview (scheduled opposite Scientific Visualization with Visit) <a name="mach-learn"></a>
 
 Participants who will be attending the Machine Learning Overview parallel session on Tuesday morning will need to install R (https://www.r-project.org/) and RStudio Desktop open source edition (https://www.rstudio.com/) on their laptops. Notes on using R on Comet can be found here:
 [https://github.com/sdsc/sdsc-summer-institute-2018/blob/master/0_preparation/RStudio on Comet_07-18-2018.pdf](https://github.com/sdsc/sdsc-summer-institute-2018/blob/master/0_preparation/RStudio on Comet_07-18-2018.pdf)
