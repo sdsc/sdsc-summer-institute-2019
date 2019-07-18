@@ -1,4 +1,4 @@
-# Preparing for the Summer Institute
+# Preparing for the Summer Institute 2019
 
 You will get   the most out of the SDSC Summer Institute if you come well prepared. By brushing up on your knowledge of Linux and installing all necessary software on your laptop before arriving, you’ll be able to focus your attention on the skills and topics that are most relevant to high performance and data intensive computing.
 
