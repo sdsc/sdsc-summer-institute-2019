@@ -84,16 +84,24 @@ Some sessions and tutorials will be using Jupyter Notebooks. To learn more, see 
 The Jupyter Notebook App can be installed using a scientific python distribution which also includes scientific python packages. The most common distribution is called Anaconda. To download:
 [https://www.anaconda.com/download/](https://www.anaconda.com/download/)
 
+### Preparation: Install VirtualBox for *An Introduction to Singularity*: <a name="singularity"></a>
 
-### Plenary session: An Introduction to Singularity: Containers for Scientific and High-Performance Computing <a name="singularity"></a>
+If you plan to attend the introductory training session on [Singularity](https://singularity.lbl.gov/)
+containers, we will be building some example containers. Unfortuntely, there is
+not a stable version of Singularity for Mac OS X or Windows operating systems at
+this time. It is a purely Linux-based tool. As such, if you will be
+working on a Mac or Windows laptop during this session, your will need
+to download and install [VirtualBox](https://www.virtualbox.org/) on
+your laptop. This will allow you to run a Linux-based virtual machine on
+your Mac or Windows system.
 
-Participants who will be attending the Using Virtualization on Comet - Singularity Containers or Comet Virtual Cluster session on Monday afternoon and wish to build their own sample Singularity Containers should make the following preparations.
+After installation and prior to attending the Summer Institute, we also
+recommend the you attempt to work through the first steps to creating
+and running your first (Linux) virtual machine as outlined in the
+[VirtualBox User Manual](https://www.virtualbox.org/manual/ch01.html).
 
-* Computers are required (tablets are not sufficient for this tutorial).
-
-* [Download](https://www.virtualbox.org/wiki/Downloads) and install Oracle VirtualBox 5.2 and VirtualBox 5.2.16 Oracle VM VirtualBox Extension Pack (**if needed**).
-
-* [Download](https://forge.sdsc.edu/si2018-singularity.ova) and save the SDSC Summer Institute 2018 Oracle VirtualBox Singularity Appliance (**~1.5GB**).
+We recommend you create your Linux virtual machine using either the
+[Ubuntu 16.04 LTS](http://releases.ubuntu.com/16.04/ubuntu-16.04.6-desktop-amd64.iso) or [CentOS 7](http://isoredirect.centos.org/centos/7/isos/x86_64/CentOS-7-x86_64-DVD-1810.iso) operating system distributions.
 
 ### Plenary session: SeedMe2: Creating data centric websites for researchers and research projects <a name="seedme"></a>
 
