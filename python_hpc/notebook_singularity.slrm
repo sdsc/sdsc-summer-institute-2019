@@ -1,0 +1,16 @@
+#!/bin/bash
+#SBATCH --job-name="jupyter-notebook"
+#SBATCH --output="jupyter-notebook.%j.%N.out"
+#SBATCH --partition=compute
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=24
+#SBATCH --export=ALL
+#SBATCH --time=04:00:00
+
+module load singularity
+
+SINGULARITY_IMAGE="/oasis/scratch/comet/zonca/temp_project/zonca-singularity-comet-master-2019-05.simg"
+COMMAND="/opt/conda/bin/jupyter lab --no-browser --ip=$(hostname)"
+export SINGULARITY_BINDPATH="/oasis"
+
+singularity exec $SINGULARITY_IMAGE $COMMAND
