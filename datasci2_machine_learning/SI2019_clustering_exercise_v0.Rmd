@@ -1,0 +1,167 @@
+---
+title: "SI2019_clustering_exercise_draft_v1"
+author: "pfr"
+date: "August 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## --------------------------------------------------
+##    PFR data prep exercises for clustering
+## NOTE:
+##   Use the W_mncntr matrix from the first code chunks 
+##   from the dataprep SVD dimension reduciotn exercise
+##
+##  **** If W_mncntr does not exist then go back and run those chunks ***
+## 
+## --------------------------------------------------
+
+
+
+##select numeric columns
+First, SVD and PCA only work on numeric columns,
+so we have to only keep the numeric columns
+
+
+```{r get numeric columns, echo=TRUE}
+
+# Get numeric columns only
+col_classes = sapply(W_df,class)   #get column classes as a list
+num_inds    = c(which(col_classes=='numeric'), which(col_classes=='integer'))
+                 #get column number indices 
+W_dfnum       = W_df[,num_inds]
+dim(W_dfnum)
+
+```
+
+
+##Run Kmeans for several K values
+
+
+```{r kmeans, echo=TRUE}
+
+#use W_mncntr from dataprep_svd exercise
+
+# Run kmeans for 20 values of K
+kg=matrix(0,20,2)
+for (i in 1:20){
+  ktest=kmeans(W_mncntr,i,20,5);
+  kg[i,1]=i;
+  kg[i,2]=ktest$tot.withinss;  #save total within Sum Square Dist to center
+}
+plot(kg[,1],kg[,2],main='kmeans within cluster SS, weatherdata numerics')
+
+#try
+str(ktest)
+#for example:
+#  cluster has a cluster number assignments for each datum
+#  centers are center points for each cluster
+#  tot sum of squares
+#  within sum of squares
+
+```
+
+##Now, let's combine the Kmeans cluster information with the 
+## SVD reduced dataset
+
+## NOTE:  The data matrix W_dfred should exist, 
+##     
+##  *** If W_dfred is not available, otherwise go back to SVD
+##      exercise and rerun that   ***
+
+
+```{r combine Kmeans cluster with SVD info, echo=TRUE}
+
+#get Kmeans for 4 clusters 
+k4             = kmeans(W_mncntr,4,20,5)
+#get color scheme
+col2use        = c('red','blue','black','yellow')
+#get cluster assignment in colors
+colassignments = col2use[k4$cluster]
+
+W_proj = as.matrix(W_mncntr) %*% Wsvd$v[,c(1,2)] #    #Try different components?
+
+plot(W_proj[,1],W_proj[,2],col=colassignments,main='data pts project to 1,2 SVD components, colored by kmeans')
+
+# to plot center points, first project them into components
+c3 = k4$centers%*% Wsvd$v[,1:3]          
+points(c3[,1],c3[,2],pch=8,cex=2)           #Try different components?
+
+
+```
+
+## Now try coloring by class (using Y mean centered)
+
+
+```{r plot with Y color}
+
+#Y was created in SVD exercise, use it to select 2 colors
+
+#get class assignment in colors
+colassignments = col2use[Y]
+
+plot(W_proj[,1],W_proj[,2],col=colassignments,main='data pts project to 1,2 SVD components, colored by class')
+
+
+
+
+```
+```{r lin model for prediciton}
+
+linmodel_result = lm(Y~.,data=W_dfnum)   #Y is either 1 or 2, so let 1.5 be the cutoff of 'NO' rain prediction or 'YES'
+
+#Note the 'Y~.'  is R's formula notation for Y=f( all the rest variables)
+summary(Y)
+```
+```{r lin model for prediction cont}
+#get model predictions for quick look at classification
+Y_pred=linmodel_result$fitted.values  
+
+#get the indices of predictions NO vs YES
+Y_pred1_indices   =which(Y_pred<1.5)
+Y_pred2_indices   =which(Y_pred>=1.5)
+
+#set up No,Yes predictions
+Y_pred_class                 =matrix(1,length(Y),1)  #default value of 1
+Y_pred_class[Y_pred2_indices]=2                      #change value of Yes class
+
+#show a confusion matrix 
+table(Y,Y_pred_class)
+```
+```{r}
+#Now color the predictions onto the 2 SVD dimensions
+
+Yerr_ind  =which(Y!=Y_pred_class)
+Yerr1_ind =intersect(which(Y==1),Yerr_ind)  #returns indices of class 1 errors
+Yerr2_ind =intersect(which(Y==2),Yerr_ind)  #returns indices of class 2 errors
+
+colassignments = col2use[Y_pred_class]
+
+plot(W_proj[,1],W_proj[,2],col=colassignments,main='data pts project to 1,2 SVD components, colored by PREDICTED class')
+```
+
+```{r}
+
+#Now plot the incorrect cases in different colors
+Ycol_ind           =Y_pred_class
+Ycol_ind[Yerr1_ind]=3     #set the color for errors, where true-value=1 (False Pos:blk)
+Ycol_ind[Yerr2_ind]=4     #                    and true-value =2        (False Negs:yellow)
+colassignments = col2use[Ycol_ind]
+
+
+
+plot(W_proj[,1],W_proj[,2],col=colassignments,main='data pts project to 1,2 SVD components, Correct (R,Bl) and Errors (Y,Bk)') 
+
+#Notice some of the incorrect class-1 cases are on the 'edges' of class 1 data in these dimensions, but other error cases
+# are next to correctly predicted class-1 cases, which suggest that other dimensions have useful information
+
+#How could we explore that?
+#   go back to the original project and try other svd dimensions
+
+
+#Note: ctrl-shift-k compiles report, or rmarkdown::render("SI2018_clustering_exercise_v0.Rmd") in #console
+```
+

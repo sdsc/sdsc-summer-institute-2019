@@ -1,0 +1,145 @@
+---
+title: "SI2019_datapred_exercise_v3"
+author: "pfr"
+date: "August 2019"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## --------------------------------------------------
+##    PFR data prep exercises for data wrangling
+## --------------------------------------------------
+
+This is an R Markdown document for data prep exercises.
+
+This exercise is to 'reshape' the data as an example of data wrangling/munging
+
+
+##load data
+```{r load data}
+#use setwd("c:/your-path-to-your-project/data/")
+
+W_df = read.table('weather_orig.csv',
+                      header=TRUE,sep=",",
+                      stringsAsFactors = TRUE)  #try TRUE
+head(W_df)
+
+```
+
+##reshape data 
+First, let's try installing this package.
+'reshape' is in base R, but 'reshape2' is a newer version
+
+
+```{r install (if necessary) and load reshape2}
+if ("reshape2" %in% rownames(installed.packages())==FALSE)
+  { install.packages('reshape2')
+} else {print('reshape2 installed already')}
+library("reshape2")
+
+```
+
+
+##reshape data 
+Now, imagine that each day we want to list a measurement for each wind direction all in the same row.   You might think of it as doing linear regression where each factor level is it's own variable.
+
+1. run this section and notice what the new row looks like,
+Where are the new columns?
+
+2. change the dcast formula to this:
+               formula=Location~ WindGustDir,   
+What's the difference?
+
+
+```{r reshape long to wide, echo=TRUE}
+library(reshape2)
+
+# long to wide: ie 'cast' repeated measure into wide table
+W_long   =dcast(W_df,  
+              formula=Date+Location+ ...~ WindGustDir,   
+                     #date, location and the rest are not repeated
+                     #WindGustDir entries are labels for the repeated measures
+               fill=0,     #this could be 0 or NA, for example.
+               value.var="WindGustSpeed")   
+                     #this variable has the repeated measurement values
+
+head(W_long)
+#optional: write.csv(W_cast,file='Weather_castwide.csv')
+
+```
+
+
+
+##reshape data wide to long
+## Let's try to get back the original dataframe using the 'melt' command
+
+1. Make sure the last version of W_long above has the first formula
+
+2. Run this section of code to execute 'melt', first get the column numbers for the new columns
+
+3. Notice that the dimensions are way off - what happened?
+
+4. Go back to above section, rerun the dcast using fill=NA, then run this 'melt' code again - now what happened?
+
+
+```{r get names, echo=TRUE}
+#first get names of measured values
+names(W_long)
+#which columns have the measure values, what are their names and column number
+
+
+```
+
+
+
+```{r reshape wide to long, echo=TRUE}
+
+# wide to long: ie 'melt' repeated measure into long table
+W_melt   =melt(W_long,  na.rm=TRUE,
+              measure.vars=c(23:39), 
+                 #these variables have the repeated measurements 
+              variable.name="WindGustDir_cast")    
+                 #this varialbe distinguishes those measurements
+                     
+#if you want to resort records try:
+#W_melt_ord = W_melt[ order(W_melt[,1], W_melt[,2]), ]
+
+dim(W_melt)   
+#OOPs what happend to the 2 rows, 
+
+```
+
+
+
+## Optional: fix the NAs
+## ..
+
+1. Make sure the last version of W_long above has the first formula
+2. Run this code, notice the indices which have NA in them
+3. Removing the NA in the Speed column are the bad measurements
+4. The NA in the WindGustDir column are just bad labels!
+
+
+```{r fixing NAs, echo=TRUE}
+
+#try
+#you can check which original row are NA
+na_indices1  = which(is.na(W_df[,'WindGustDir']))
+W_df[na_indices1,]
+
+na_indices2  = which(is.na(W_df[,'WindGustSpeed']))
+W_df[na_indices2,]
+
+
+which(W_melt[,'WindGustDir_cast']=='NA')
+
+W_df_nona=W_df[-na_indices1,]  #after this you could retry cast and melt
+
+
+```
+
