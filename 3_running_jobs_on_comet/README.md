@@ -1,12 +1,11 @@
 # SDSC Summer Institute Topic: Accessing and Running Jobs on Comet
 Presented by Mary Thomas (SDSC,  <mthomas@sdsu.edu> )
 <hr>
-In this tutorial, you will learn how to compile and run jobs on Comet, where to run them, and how to run batch jobs.
 
-Presented by Mary Thomas (SDSC,  <mpthomas@ucsd.edu> )
-Monday,  August 5, 2019
+## Presented by Mary Thomas (SDSC,  <mpthomas@ucsd.edu> )
+### Monday,  August 5, 2019
 
-<hr>
+
 In this tutorial, you will learn how to compile and run jobs on Comet, where to run them, and how to run batch jobs. The content below includes recording of the webinar, a PDF verions of PPT presentation, and additional training materials. 
 
 <a name="top">Available Training Material:
