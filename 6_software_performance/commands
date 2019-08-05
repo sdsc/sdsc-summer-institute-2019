@@ -1,5 +1,5 @@
 # Copying files from Bob's home directory
-cp -r /home/sinkovit/SI2018_effective_use .
+cp -r /home/sinkovit/SI2019_effective_use .
 
 # Getting processor info
 less /proc/cpuinfo
@@ -33,11 +33,10 @@ uname -o
 uname -a
 cat /etc/centos-release
 
-# Copying code
-cp -r ~sinkovit/SI2017_effective_use/ .
-
 # Getting an interactive node on Comet
-srun --reservation=SI2018DAY1 --pty --nodes=1 --ntasks-per-node=24 -t 00:30:00 --wait=0 --export=ALL /bin/bash
+getcpu1
+-- or --
+srun --reservation=SI2019DAY1 --pty --nodes=1 --ntasks-per-node=24 -t 01:00:00 --wait=0 --export=ALL /bin/bash
 
 --------- examples ---------
 
