@@ -19,3 +19,12 @@ In this tutorial, you will learn how to compile and run jobs on Comet, where to 
 * You must have a comet account in order to access the system. 
 * You can obtain a trial account:  http://www.sdsc.edu/support/user_guides/comet.html#trial_accounts
 * The `hostname` for Comet is `comet.sdsc.edu`
+
+## Getting Interactive Nodes on Comet:
+* First log onto Comet using your SI19 account.
+* Run these aliases:
+  * getcpu[1234]  - one compute node for 1/2/3/4 hours
+  * getgpu[1234]  - one gpu node for  1/2/3/4 hours
+* For SI19/This week only
+* General interactive node command:
+  * srun --pty --nodes=1 --ntasks-per-node=24 -p compute -t 00:30:00 --wait 0 /bin/bash
