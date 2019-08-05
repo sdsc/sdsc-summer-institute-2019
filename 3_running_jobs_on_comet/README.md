@@ -6,7 +6,7 @@ Presented by Mary Thomas (SDSC,  <mthomas@sdsu.edu> )
 ### Monday,  August 5, 2019
 
 
-In this tutorial, you will learn how to compile and run jobs on Comet, where to run them, and how to run batch jobs. The content below includes recording of the webinar, a PDF verions of PPT presentation, and additional training materials. 
+In this tutorial, you will learn how to compile and run jobs on Comet, where to run them, and how to run batch jobs for MPI, OpenMP, and GPU/CUDA examples.
 
 <a name="top">Available Training Material:
 
