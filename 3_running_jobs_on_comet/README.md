@@ -2,7 +2,7 @@
 Presented by Mary Thomas (SDSC,  <mthomas@sdsu.edu> )
 <hr>
 
-## Presented by Mary Thomas (SDSC,  <mpthomas@ucsd.edu> )
+## Presented by Mary Thomas (SDSC,  <mthomas@sdsc.edu> )
 ### Monday,  August 5, 2019
 
 
@@ -10,8 +10,8 @@ In this tutorial, you will learn how to compile and run jobs on Comet, where to 
 
 <a name="top">Available Training Material:
 
-* Running Jobs: Self-guided tutorial: [running-jobs.md](running-jobs.md)  
-* Preparation Materials: [Getting Started at SDSC](hhttps://github.com/sdsc/sdsc-summer-institute-2019/tree/master/0_preparation |
+* Running Jobs: [Self-guided tutorial]](running-jobs.md)  
+* Preparation Materials: https://github.com/sdsc/sdsc-summer-institute-2019/tree/master/0_preparation |
 
 
 ## Requirements & Notes:
