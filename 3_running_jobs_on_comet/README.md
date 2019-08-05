@@ -10,8 +10,9 @@ In this tutorial, you will learn how to compile and run jobs on Comet, where to 
 
 <a name="top">Available Training Material:
 
-* Running Jobs: [Self-guided tutorial]](running-jobs.md)  
-* Preparation Materials: https://github.com/sdsc/sdsc-summer-institute-2019/tree/master/0_preparation |
+* Self-guided tutorial: [running-jobs.md](running-jobs.md)  
+* Webinar Presentation: [Running-Jobs-on-Comet.pdf](Running-Jobs-on-Comet.pdf)
+* Preparation Materials: https://github.com/sdsc/sdsc-summer-institute-2019/tree/master/0_preparation
 
 
 ## Requirements & Notes:
