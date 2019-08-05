@@ -61,14 +61,14 @@ Note: if you have any difficulties completing this task, please contact Institut
 * 27 single-rack supercomputers
 
 
-<img src="comet-characteristics.png" alt="Comet System Characteristics" width="500px" />
+<img src="images/comet-characteristics.png" alt="Comet System Characteristics" width="500px" />
 
 <hr>
 
-<a name="network-arch"></a><img src="comet-network-arch.png" alt="Comet Network Architecture" width="500px" />
+<a name="network-arch"></a><img src="images/comet-network-arch.png" alt="Comet Network Architecture" width="500px" />
 
 <hr>
-<a name="file-systems"></a><img src="comet-file-systems.png" alt="Comet File Systems" width="500px" />
+<a name="file-systems"></a><img src="images/comet-file-systems.png" alt="Comet File Systems" width="500px" />
 
 
 * Lustre filesystems – Good for scalable large block I/O
@@ -95,7 +95,7 @@ Note: if you have any difficulties completing this task, please contact Institut
 Details about how to access Comet under different circumstances are described in the Comet User Guide:
  http://www.sdsc.edu/support/user_guides/comet.html#access
 
- </a><img src="comet-logon.png" alt="Comet Logon" width="500px" />
+ </a><img src="images/comet-logon.png" alt="Comet Logon" width="500px" />
 
 ```
 [username@gidget:~]
@@ -267,7 +267,7 @@ http://www.sdsc.edu/support/user_guides/comet.html#running
 
 ### Slurm Partitions
 
-<img src="comet-queue-names.png" alt="Comet Queue Names" width="500px" />
+<img src="images/comet-queue-names.png" alt="Comet Queue Names" width="500px" />
 
 ```
 Specified using -p option in batch script. For example:
@@ -312,7 +312,7 @@ http://www.sdsc.edu/support/user_guides/comet.html#compiling
 
 The use guide includes a table for which compiler to use as a function of model (MPI, OMP, etc) and language (Fort, C, C++):
 
-<img src="comet-compilers.png" alt="Comet Compilers" width="500px" />
+<img src="images/comet-compilers.png" alt="Comet Compilers" width="500px" />
 
 
 * In the tutorial, we inlcude several hands-on examples that cover many of the cases in the table:
