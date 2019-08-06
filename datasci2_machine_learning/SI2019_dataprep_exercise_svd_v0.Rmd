@@ -1,0 +1,117 @@
+---
+title: "SI2018_dataprep_exercise_svd_v1"
+author: "pfr"
+date: "August 1, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## --------------------------------------------------
+##    PFR data prep exercises for dimension reduction
+## --------------------------------------------------
+
+This is an R Markdown document for data prep exercises.
+
+This exercise is to run SVD and possibly reduce dimensions of the data
+
+
+##load data
+```{r load data}
+#setwd("~/Work2016/Comet/SI2017/data")
+
+W_df_orig = read.table('weather_orig.csv',
+                      header=TRUE,sep=",",
+                      stringsAsFactors = TRUE)  #try TRUE
+
+#Keep rows that are NOT missing data
+keep_ind  = complete.cases(W_df_orig)
+W_df      = W_df_orig[keep_ind,]
+
+Y=as.numeric(W_df[,'RainTomorrow'])  #save thsi for later
+
+# subset with select is good to remove columns
+W_df = subset(W_df, select=-c(RISK_MM))
+
+dim(W_df)
+
+```
+
+
+##select numeric columns
+First, SVD and PCA only work on numeric columns,
+so we have to only keep the numeric columns
+
+
+```{r get numeric columns, echo=TRUE}
+
+
+# Get numeric columns only
+col_classes = sapply(W_df,class)   #get column classes as a list
+num_inds    = c(which(col_classes=='numeric'), which(col_classes=='integer'))
+                 #get column number indices 
+W_dfnum       = W_df[,num_inds]
+dim(W_dfnum)
+
+```
+##Now mean center data
+```{r mean center,echo=TRUE}
+#now we can use 'scale' function center columns around their mean
+#generally useful but it depends on data and needs
+W_mncntr=scale(W_dfnum,center=TRUE,scale=FALSE)
+
+```
+
+
+##Now run SVD
+
+```{r get SVD factorization, echo=TRUE}
+
+#Because W_num is non-square run SVD
+# the singular values as in the 'd' variable
+# the factors are in the 'u' and 'v' variables
+Wsvd=svd(W_mncntr)
+
+
+#plot the cumulative sum, which represents the cumulative variance that 
+# each factor accounts for
+plot(1:length(Wsvd$d),cumsum(Wsvd$d/sum(Wsvd$d)),main='SVD cumulative variance')
+
+
+
+```
+
+
+##Now lets reduce the dimensions, what's a reasonable amount of total variance that we have captured; conversely how much can we ignore
+
+
+```{r reduction, echo=TRUE}
+
+#One could take first 3 components as an approximation to original data, for example
+
+numcomp=3
+#NOTE  the %*% is matrix multiplication
+W_dfred=Wsvd$u[,1:numcomp] %*% diag(Wsvd$d[1:numcomp]) %*% Wsvd$v[1:numcomp,1:3]
+
+dim(W_dfred)
+
+```
+## For fun, run a linear model of Y= rainfall as a function of original data vs reduced data (numerical fields)
+
+##check out the Residual standard error near the bottom of the results ##summaries, why are the degrees of freedom different?
+##Compare the coefficient of the first component vs coefficient of the model ## with orginal variables - why is it so high?
+
+```{r compare linear model on original vs reduced data}
+Ymc = Y-mean(Y)
+#result_orig=lm(Ymc~.,data=W_mncntr)  
+result_orig=lm(Ymc~W_mncntr)  
+          #linear model takes Y~ matrix or Y~.,data=dataframe object
+result_red =lm(Ymc~W_dfred)
+
+summary(result_orig)
+
+summary(result_red)
+```
+
