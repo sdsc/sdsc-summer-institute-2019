@@ -1,0 +1,142 @@
+---
+title: "Classifying Weather Data"
+author: "SDSC Summer Institute"
+modified: "2019-08-04"
+date: "`r Sys.time()`"
+output:
+  html_document: 
+    toc: yes
+  pdf_document:
+    toc: yes
+---
+
+### Read Data
+#### Read in weather data
+```{r getData}
+df <- readRDS("weather-orig.rds")
+dim(df)
+head(df)
+tail(df)
+```
+
+#### Remove variable RISK_MM, which is the same as Rainfall for the next day
+```{r  removeRiskMM}
+df$RISK_MM <- NULL
+dim(df)           # Get dimensions of dataframe
+names(df)
+```
+
+### Partition Data
+#### Divide data into train and test sets
+```{r partition}
+
+# Randomly select 70% of samples from dataset
+# Note:  'sample' was changed in R 3.6.  sample.kind setting is needed to have
+#        console and knit get same sampling results
+set.seed(13579, sample.kind="Rounding")
+pct.trn <- 0.7                    # % of data used for training
+nrows <- nrow(df)
+index <- sample(1:nrows, size = pct.trn * nrows)
+
+# Divide data into train and test sets
+df.trn <- df[index,] 
+df.tst <- df[-index,] 
+
+# Statistics on train & test sets
+dim(df.trn)
+table(df.trn$RainTomorrow)/nrow(df.trn)
+# summary(df.trn)
+
+dim(df.tst)
+table(df.tst$RainTomorrow)/nrow(df.tst)
+head(df.tst)
+head(df.trn)
+
+# Save datasets. 
+# write.csv(df.trn, "weather-trn.csv",row.names=FALSE)  # Save as CSV files
+# write.csv(df.tst, "weather-tst.csv",row.names=FALSE)
+saveRDS(df.trn, "weather-trn.rds")                      # Save as RDS files
+saveRDS(df.tst, "weather-tst.rds")
+```
+
+
+### Classification using Decision Tree
+#### Train model to predict whether it will rain tomorrow
+```{r tree}
+# install.packages("rpart"")
+# install.packages("rpart.plot"")
+library(rpart)
+library(rpart.plot)             # Load rpart.plot library
+
+# Remove variables not useful for classification (Date, Location, RainToday)
+df.trn <- subset(df.trn,select=-c(Date,Location,RainToday))
+df.tst <- subset(df.tst,select=-c(Date,Location,RainToday))                
+names(df.trn)               # Columns in datasets after removing some variables
+dim(df.trn)                 # Dimensions of datasets after removing some variables
+dim(df.tst)
+
+# Build tree with training data.  
+# Target variable is RainTomorrow, and input variables are the rest of the variables.
+set.seed(567)   # Set seed for x-val
+tree.model <- rpart (RainTomorrow ~ .,data=df.trn, method="class")
+printcp(tree.model)          # Print summary of trained model
+rpart.plot(tree.model)       # Plot resulting tree model
+```
+
+```{r evalTree, eval=TRUE, echo=TRUE}
+# Prediction error on TRAIN data (i.e., resubstition error)
+pred.trn <- predict(tree.model,newdata=df.trn,type="class")    
+table(actual=df.trn$RainTomorrow,predicted=pred.trn)                # Confusion matrix
+err <- (1 - (sum(pred.trn==df.trn$RainTomorrow)) / nrow(df.trn))    # Misclassification Error
+paste("Error on TRAIN Data: ", err)
+
+# Prediction error on TEST data
+pred.tst <- predict(tree.model,newdata=df.tst,type="class")    
+table(actual=df.tst$RainTomorrow,predicted=pred.tst)                # Confusion matrix
+err <- (1 - (sum(pred.tst==df.tst$RainTomorrow)) / nrow(df.tst))    # Misclassification Error
+paste("Error on TEST Data: ", err)
+```
+
+#### Prune tree
+```{r pruneTree}
+
+# Get min complexity parameter value from tree
+cp.best <- tree.model$cptable[which.min(tree.model$cptable[,"xerror"]),"CP"]
+tree.pruned <- prune(tree.model, cp=cp.best)                              # Set cp criterion for pruning tree
+printcp(tree.pruned)                                                      # Print summary of pruned tree
+rpart.plot(tree.pruned)                                                   # Plot pruned tree
+pred.tst.pruned <- predict(tree.pruned,newdata=df.tst,type="class")       # Apply tree to test data
+table(actual=df.tst$RainTomorrow,predicted=pred.tst.pruned)               # Confusion matrix
+err <- (1 - (sum(pred.tst.pruned==df.tst$RainTomorrow)) / nrow(df.tst))   # Misclassification Error
+paste("Error on TEST Data (Pruned Tree): ", err)
+
+```
+
+### Classification using Random Forest
+#### Build random forest model
+```{r rf}
+# install.packages("randomForest")
+library(randomForest)
+
+# Build random forest from training data.
+# Target variable is RainTomorrow, and input variables are the rest of the variables.
+# Missing values are imputed.  Importance of variables are calculated.
+set.seed(765)          # For reproducibility
+rf.model <- randomForest (RainTomorrow ~ .,data=df.trn, na.action=na.roughfix, importance=TRUE)
+print(rf.model)   # Print model parameters
+
+# Variable importance
+importance(rf.model)
+varImpPlot(rf.model)
+```
+
+#### Evaluate random forest
+```{r rftest}
+# Evaluate RF model on test dataset
+rf.pred.tst <- predict(rf.model,newdata=df.tst)                    # Predict test data
+table(actual=df.tst$RainTomorrow,predicted=rf.pred.tst)            # Confusion matrix
+err <- (1 - (sum(rf.pred.tst==df.tst$RainTomorrow, na.rm=TRUE)) / 
+          sum(complete.cases(df.tst)))                             # Misclassification error.Ignore NAs
+paste("RF Error on TEST Data: ", err)
+```
+
