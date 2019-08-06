@@ -29,6 +29,6 @@ participants come from many different backgrounds, so tailor your content for no
 * This is going to create a pull request to **your own** master, we want instead to send the pull request to the main repository, threfore click on **compare across forks** in the line just below "Open a pull request"
 * In the base fork on the left, choose the main fork which is **sdsc/sdsc-summer-institute-2019**
 * Click **Create pull request**  to confirm it
-* If you made it correctly, your pull request should show up at <https://github.com/sdsc/sdsc-summer-institute-2019/pulls> like the example Pull Request I made: <https://github.com/sdsc/sdsc-summer-institute-2019/pull/14>
+* If you made it correctly, your pull request should show up at <https://github.com/sdsc/sdsc-summer-institute-2019/pulls> like the example Pull Request I made: <https://github.com/sdsc/sdsc-summer-institute-2018/pull/14>
 
 We will concatenate all the slides into a single deck in alphabetic order on Wednesday at noon.
