@@ -1,0 +1,73 @@
+			Data Dictionary for Weather Dataset
+				DM Essentials I Project
+
+
+Date
+The date of observation.
+
+Location
+The common name of the location of the weather station.
+
+MinTemp
+The minimum temperature in degrees Celsius.
+
+MaxTemp
+The maximum temperature in degrees Celsius.
+
+Rainfall
+The amount of rainfall recorded for the day in mm.
+
+Evaporation
+Evaporation (mm) in the 24 hours to 9am.
+
+Sunshine
+The number of hours of bright sunshine in the day.
+
+WindGustDir
+The direction of the strongest wind gust in the 24 hours to midnight.
+
+WindGustSpeed
+The speed (km/hr) of the strongest wind gust in the 24 hours to midnight.
+
+WindDir9am
+Wind direction averaged over 10 minutes prior to 9am.
+
+WindDir3pm
+Wind direction averaged over 10 minutes prior to 3pm.
+
+WindSpeed9am
+Wind speed (km/hr) averaged over 10 minutes prior to 9am.
+
+WindSpeed3pm
+Wind speed (km/hr) averaged over 10 minutes prior to 3pm.
+
+Humidity9am
+Relative humidity (percent) at 9am.
+
+Humidity3pm
+Relative humidity (percent) at 3pm.
+
+Pressure9am
+Atmospheric pressure (hectopascals) at 9am, reduced to mean sea level.
+
+Pressure3pm
+Atmospheric pressure (hectopascals) at 3pm, reduced to mean sea level.
+
+Cloud9am
+Fraction of sky obscured by cloud at 9am. This is measured in "oktas", which are a unit of eighths. It records how many eighths of the sky are obscured by cloud. A 0 measure indicates completely clear sky whilst an 8 indicates that it is completely overcast.
+
+Cloud3pm
+Fraction of sky obscured by cloud at 3pm. See Cloud9am for description.
+
+Temp9am
+Temperature (degrees Celsius) at 9am.
+
+Temp3pm
+Temperature (degrees Celsius) at 3pm.
+
+RainToday
+1 if precipitation (mm) recorded for the day exceeds 1mm; otherwise 0.
+
+RainTomorrow
+1 if precipitation (mm) recorded for the NEXT day exceeds 1m; otherwise 0.
+
