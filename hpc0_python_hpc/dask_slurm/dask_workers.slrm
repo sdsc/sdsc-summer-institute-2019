@@ -6,6 +6,8 @@
 #SBATCH --ntasks-per-node=24
 #SBATCH --export=ALL
 #SBATCH -t 0:20:00
+### REMOVE RESERVATION AFTER THE SUMMER INSTITUTE
+#SBATCH --reservation=SI2019DAY2
 
 module load singularity
 

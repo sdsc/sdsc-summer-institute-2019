@@ -1,0 +1,96 @@
+# Obtaining a Comet compute node for 3 hours
+srun --reservation=SI2018DAY2 --pty --nodes=1 --ntasks-per-node=24 -t 03:00:00 --wait=0 --export=ALL /bin/bash
+
+# ---------- MKL vs. non-MKL example ----------
+
+# Compiling MKL version of Linear equation solver example
+icc -xHost -O3 -o lineq_mkl lineq_mkl.c -mkl
+
+# Compiling non-MKL version of Linear equation solver example
+icc -xHost -O3 -o lineq_nomkl lineq_nomkl.c -L/opt/lapack/intel/lib -lblas -llapack -lm
+
+# Loading modules and setting thread count
+module load lapack       # Needed for non-MKL version
+
+# Running test problem on one core
+export OMP_NUM_THREADS=1
+./lineq_mkl 3000      # MKL version on 3000x3000 system
+./lineq_nomkl 3000    # non-MKL version on 3000x3000 system
+
+# Running test problem on four cores
+export OMP_NUM_THREADS=4
+numactl --physcpubind=0-3 ./lineq_mkl 3000      # MKL version on 3000x3000 system
+numactl --physcpubind=0-3 ./lineq_nomkl 3000    # non-MKL version on 3000x3000 system
+
+# ---------- gprof example 1 ----------
+
+# Compiling gprof example
+ifort -pg -O3 -o gprof_ex1 gprof_ex1.f
+
+# Running test problem
+time ./gprof_ex1 100000000
+
+# Generating profile
+gprof gprof_ex1 gmon.out > profile_gpex1
+
+# ---------- matrix addition example ----------
+
+# Compiling dmadd_good
+ifort -xHost -o     dmadd_good_df dmadd_good.f
+ifort -xHost -O0 -o dmadd_good_O0 dmadd_good.f
+ifort -xHost -O1 -o dmadd_good_O1 dmadd_good.f
+...
+
+# Compiling dmadd_bad
+ifort -xHost -o     dmadd_bad_df dmadd_bad.f
+ifort -xHost -O0 -o dmadd_bad_O0 dmadd_bad.f
+ifort -xHost -O1 -o dmadd_bad_O1 dmadd_bad.f
+...
+
+# Running dmadd_good and dmadd_bad (examples)
+./dmadd_good_O2 20000
+./dmadd_bad_O3 30000
+...
+
+# ---------- logsum example ----------
+
+# Compiling with GNU and Intel compilers
+gcc -O3 -o logsum_gcc logsum.c -lm
+icc -O3 -o logsum_icc logsum.c
+
+# Running logsum
+./logsum_gcc
+./logsum_icc
+
+# ---------- distance test example ----------
+
+# Compiling disttest
+icc -xHost -O3 -o disttest disttest.c
+
+# Running disttest
+./disttest 50000 0.01
+
+# ---------- fusion example ----------
+
+# Compiling fusion
+ifort -xHost -O3 -o fusion fusion.f
+
+# Running fusion (40000 is good choice for problem size)
+./fusion 40000
+
+# ---------- blocking example ----------
+
+# Compiling blocking
+ifort -O2 -xHost -o blocking blocking.f
+
+# Running blocking (40000 is good choice for problem size)
+./blocking 40000
+
+# ---------- matmul example ----------
+
+# Compiling blocking
+ifort -O2 -xHost -o matmul matmul.f
+
+# Running matmul (3000-5000 is good choice for problem size)
+./blocking 3000
+

@@ -1,0 +1,184 @@
+---
+title: "Data Exploration on Weather Data"
+author: "SDSC Summer Institute"
+modified: "2019-08-04"
+date: "`r Sys.time()`"
+output: html_document
+---
+
+## Preliminaries
+### Read in weather data
+```{r getData}
+df <- readRDS(<<FILL-IN>>)
+dim(df)
+head(df$RISK_MM)
+```
+
+### Remove variable RISK_MM, which is the same as Rainfall for the next day
+```{r  removeRiskMM}
+df$RISK_MM <- <<FILL-IN>>
+dim(df)
+```
+
+## Summary Statistics
+### Check statistics and values in dataset
+```{r stats}
+<<FILL-IN>>(df)             # Structure of object
+<<FILL-IN>>(df)             # Dimensions of object
+<<FILL-IN>>(df)            # First few lines of data
+<<FILL-IN>>(df)            # Last few lines of data
+<<FILL-IN>>(df)           # Column headers
+<<FILL-IN>>(df)         # Summary statistics
+```
+
+### Statistics on individual variables
+```{r statsVar}
+
+# Summary statistics
+mean(df$MinTemp)
+var(df$MinTemp)
+sd(df$MinTemp)
+summary(df$MinTemp)
+
+# Other statistics
+min(df$Date)                                # First date
+max(df$Date)                                # Last date
+sum(df$Rainfall)                            # Total rainfall amount for year
+sum(df$Rainfall) / length(df$Rainfall)      # Average daily rainfall
+```
+
+### Remove rows with missing values
+```{r na}
+
+# Find number of places in dataset where there are missing values
+sum(<<FILL-IN>>(df))
+
+# Find number of samples (i.e., rows) without any missing value
+sum(complete.cases(df))
+
+# Remove rows with any missing value
+dim(df)
+df <- <<FILL-IN>>(df)
+dim(df)
+summary(df)
+```
+
+### Save the data as a CSV file (RISK_MM variable and NAs removed) to look at values
+```{r saveCSV}
+# NOTE: Order of factor levels is not preserved in csv files.
+write.csv(df, <<FILL-IN>>, row.names=FALSE)
+```
+
+### Explore numerical variables
+```{r numVars}
+# Numerical variables (full set)
+# numeric.vars <- c("MinTemp","MaxTemp","Rainfall","Evaporation","Sunshine","WindGustSpeed","WindSpeed9am","WindSpeed3pm","Humidity9am","Humidity3pm","Pressure9am","Pressure3pm","Cloud9am","Cloud3pm","Temp9am","Temp3pm")
+
+# Subset of numerical variables.
+numeric.vars <- c("Rainfall","Evaporation","Sunshine","WindSpeed9am","Humidity9am","Pressure9am","Cloud9am","Temp9am")
+
+# Create DF with just numeric variables
+df.num <- df[numeric.vars]
+dim(<<FILL-IN>>)
+head(df.num,3)
+```
+
+### Compute and plot pairwise correlation matrix
+```{r corr}
+<<FILL-IN>>(df.num, use="pairwise")
+```
+
+### Explore categorical variables
+```{r ctgVars}
+
+# Levels (categories) for WindGustDir
+levels(df$WindGustDir)
+
+# Number of occurrences for each WindGustDir category
+<<FILL-IN>>(df$WindGustDir)
+
+# Sorted number of occurrences for each level
+sort(table(df$WindGustDir))
+
+# Percentage for each WindGustDir category
+round (table(df$WindGustDir) / sum(table(df$WindGustDir)) * 100, digits=2)
+
+# Sorted percentages for WindGustDir categories
+<<FILL-IN>> (round (table(df$WindGustDir) / sum(table(df$WindGustDir)) * 100, digits=2))
+```
+
+## Plots for visualizing data
+### Histogram of Sunshine
+```{r hist}
+summary(df$Sunshine)
+<<FILL-IN>>(df$Sunshine,breaks=10,col="lightblue",main="Histogram of Daily Sunshine",xlab="Sunshine (Hours)")
+```
+
+### Density plot of Sunshine
+```{r density}
+plot(density(df$Sunshine), main="Distribution of Daily Sunshine (Hours)")
+plot(<<FILL-IN>>(df$Sunshine),ylim=c(0,0.2), main="Distribution of Daily Sunshine (Hours)")
+```
+
+### Bar plot showing frequency of wind gust directions
+```{r barplot}
+table(df$WindGustDir)
+plot(df$<<FILL-IN>>,col="lightblue",main="Distribution of Wind Gust Direction",xlab="Wind Gust Direction",ylab="Count")
+```
+
+### Scatter plot of Evaporation vs. Temperature
+```{r scatterplot}
+cor(df$Evaporation,df$Temp9am)
+plot(df$Evaporation,df$<<FILL-IN>>,col="blue",main="Evaporation vs. Temperature",xlab="Evaporation (mm)",ylab="Temperature")
+```
+
+### Scatter plot of Evaporation vs. Temperature with regression line
+```{r scatterplot2}
+plot(df$Evaporation,df$Temp9am,col="blue",main="Evaporation vs. Temperature",xlab="Evaporation (mm)",ylab="Temp9am (C)")
+abline(lm(df$Temp9am ~ df$Evaporation), col="red")
+```
+
+### Line plot of daily high temperature
+```{r lineplot}
+# Get summary statistics
+summary(df$MaxTemp)        
+
+# Using base R plot command
+plot(df$Date,df$<<FILL-IN>>,type='l',col="blue",main="Daily High Temperature",xlab="Date",ylab="MaxTemp (C)")
+
+```
+
+### Box plot of atmospheric pressure with respect to RainToday
+```{r boxplot}
+# install.packages("ggplot2")
+library(ggplot2)
+<<FILL-IN>>(df, aes(x=RainToday, y=Pressure9am, fill=RainToday)) + geom_boxplot() +
+  ggtitle("Atmospheric Pressure wrt Rain") 
+```
+
+### Box plot of MaxTemp by month
+```{r boxplot2}
+# install.packages("lubridate")
+library(lubridate)   # R package for handling dates
+ggplot(df, aes(x=as.factor(<<FILL-IN>>(Date)), y=MaxTemp)) + geom_boxplot(fill="lightblue") + 
+  xlab("Month") + ylab("MaxTemp (Celsius)") + ggtitle("High Temperature by Month")
+```
+
+### Violin plot of MaxTemp by month
+```{r violinplot}
+ggplot(df, aes(x=as.factor(month(Date)), y=MaxTemp)) + geom_<<FILL-IN>>(fill="lightblue") + 
+  xlab("Month") + ylab("MaxTemp (Celsius)") + ggtitle("High Temperature by Month")
+```
+
+### Plot correlation matrix
+```{r corrplot}
+# install.packages("GGally")
+library(GGally)        # R package that extends ggplot2  
+cor(df.num, use = "pairwise")
+<<FILL-IN>>(df.num, label=TRUE, label_round=2)  # ggcorr uses cor to calculate correlations
+```
+
+### Plot pairwise correlation
+```{r pairsplot}
+<<FILL-IN>>(df[c("Sunshine","Pressure9am","Humidity9am","Temp9am")])  # ggpairs is from GGally package
+```

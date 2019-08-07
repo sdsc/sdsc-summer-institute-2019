@@ -103,14 +103,8 @@ and running your first (Linux) virtual machine as outlined in the
 We recommend you create your Linux virtual machine using either the
 [Ubuntu 16.04 LTS](http://releases.ubuntu.com/16.04/ubuntu-16.04.6-desktop-amd64.iso) or [CentOS 7](http://isoredirect.centos.org/centos/7/isos/x86_64/CentOS-7-x86_64-DVD-1810.iso) operating system distributions.
 
-### Plenary session: SeedMe2: Creating data centric websites for researchers and research projects <a name="seedme"></a>
-
-All participants should take the following steps.
-
-* [Download](https://www.docker.com/community-edition) and install Docker community edition for your operating system
-    * Test if docker setup works on [linux](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-from-a-package) or [mac](https://docs.docker.com/docker-for-mac/#explore-the-application) or [windows](https://docs.docker.com/docker-for-windows/#explore-the-application)
-+ [Download](https://dibbs.seedme.org/sites/dibbs.seedme.org/files/docker-images/seedme-workshop-2018-begin.tar.gz) begin docker image, this will be used to get started with the tutorial
-+ [Download](https://dibbs.seedme.org/sites/dibbs.seedme.org/files/docker-images/seedme-workshop-2018-final.tar.gz) final docker image, this is a fully configured sandbox website 
+### Plenary session: SeedMeLab: Creating data centric websites for researchers and research projects <a name="seedme"></a>
+Latest web browser is needed for this session.
 
 ### Parallel session: Machine Learning Overview (scheduled opposite Scientific Visualization with Visit) <a name="mach-learn"></a>
 
