@@ -9,14 +9,14 @@ Andreas Goetz, SDSC (agoetz@sdsc.edu)
 How to use Comet's GPU nodes
 ============================
 
-# Obtain interactive shared GPU node on SDSC Comet (30 min or 1/2/3 h allocation)
-`getgpu` or `getgpu1/2/3`
+# Obtain interactive shared GPU node on SDSC Comet (1,2,3 or 4 h allocation)
+`gpu[1234]`
 
 This will launch the command
 
 ```
-srun -t 00:30:00 --partition=gpu-shared --nodes=1 --ntasks-per-node=6 \
-     --gres=gpu:1 --reservation=SI2019DAY4 --pty --wait=0 /bin/bash
+srun -t 01:00:00 --partition=gpu-shared --nodes=1 --ntasks-per-node=6 \
+     --gres=gpu:k80:1 --reservation=SI2019DAY4 --pty --wait=0 /bin/bash
 ```
 
 or correspondingly with longer time.
