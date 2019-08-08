@@ -1,0 +1,26 @@
+#!/bin/bash
+################################################################################
+#  SLURM script for requesting GPU node to run Keras notebooks
+#  San Diego Supercomputer Center 
+################################################################################
+#SBATCH --job-name="keras"
+#SBATCH --output="keras.%j.%N.out"
+#SBATCH --gres=gpu:k80:1
+#SBATCH --partition=gpu-shared
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=6
+#SBATCH --export=ALL
+#SBATCH -t 03:00:00
+
+### NOTE: 
+# gpu:k80:1 specifies 1 K80 GPU
+# ntasks-per-node should be (6 x #k80_gpus) or (7 x #P100_gpus)
+
+### Activate conda environment
+sleep 5
+ . /share/apps/compute/si2019/miniconda3/etc/profile.d/conda.sh
+conda activate
+
+### Launch jupyter notebook 
+sleep 5
+jupyter notebook --no-browser --ip=`/bin/hostname`

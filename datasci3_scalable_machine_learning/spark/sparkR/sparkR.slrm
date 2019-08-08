@@ -1,0 +1,26 @@
+#!/bin/bash
+################################################################################
+#  SLURM script for requesting CPU node to run Spark notebooks
+#  San Diego Supercomputer Center 
+################################################################################
+#SBATCH --job-name="sparkR"
+#SBATCH --output="sparkR.%j.%N.out"
+#SBATCH --partition=compute
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=24
+#SBATCH --export=ALL
+#SBATCH -t 03:00:00
+
+### Activate conda environment
+sleep 5
+ . /share/apps/compute/si2019/miniconda3/etc/profile.d/conda.sh
+conda activate
+
+### Ckear default environment and load Spark module
+module purge 
+export MODULEPATH=$MODULEPATH:/share/apps/compute/modulefiles/applications
+module load spark/2.4.0 
+
+### Launch jupyter notebook 
+sleep 5
+jupyter notebook --no-browser --ip=`/bin/hostname`
