@@ -1,4 +1,4 @@
-# SDSC 2018 Webinar Series Topic: Introduction to Running Jobs on Comet 
+# SDSC 2019 Webinar Series Topic: Introduction to Running Jobs on Comet 
 
 Presented by Mary Thomas (SDSC,  <mpthomas@ucsd.edu> )
 <hr>
